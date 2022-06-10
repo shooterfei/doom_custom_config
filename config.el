@@ -103,8 +103,9 @@
         completion-category-overrides '((file (styles partial-completion)))))
 
 
+;; docx 文档处理, 通过pandoc 转为org文档进行预览
 (defun g-org-generate-docx-file()
   (interactive)
-  (shell-command (concat "pandoc -o " (replace-regexp-in-string ".docx$" ".org" buffer-file-name) " " buffer-file-name " --extract-media=x2")))
+  (shell-command (concat "pandoc -o " (replace-regexp-in-string ".docx$" ".org" buffer-file-name) " " buffer-file-name " --extract-media=imgrefs")))
 
 (global-set-key (kbd "<f9>") 'g-org-generate-docx-file)
