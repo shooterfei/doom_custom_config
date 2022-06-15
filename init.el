@@ -180,7 +180,7 @@
        :email
        (mu4e +org +gmail)
        ;;notmuch
-       ;;(wanderlust +gmail)
+       ;; (wanderlust +gmail)
 
        :app
        ;;calendar
