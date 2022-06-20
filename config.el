@@ -119,3 +119,7 @@
 
 (global-set-key (kbd "C-c f") 'autocomplete-file-name)
 
+
+(defun go-run-file ()
+  (interactive)
+  (shell-command (concat "go run " buffer-file-name)))
