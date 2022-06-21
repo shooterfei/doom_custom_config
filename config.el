@@ -86,8 +86,16 @@
 (add-load-path! "~/.doom.d/site-lisp")
 ;; 代理配置
 (require 'init-proxy)
+(autoload
+  'ace-jump-mode-pop-mark
+  "ace-jump-mode"
+  "Ace jump back:-)"
+  t)
 
+(eval-after-load "ace-jump-mode"
+  '(ace-jump-mode-enable-mark-sync))
 
+(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
 ;; set zsh to default shell of vterm
 (use-package! vterm
   :config
@@ -118,4 +126,3 @@
   (comint-dynamic-complete-as-filename))
 
 (global-set-key (kbd "C-c f") 'autocomplete-file-name)
-
