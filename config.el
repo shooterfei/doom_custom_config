@@ -86,16 +86,7 @@
 (add-load-path! "~/.doom.d/site-lisp")
 ;; 代理配置
 (require 'init-proxy)
-(autoload
-  'ace-jump-mode-pop-mark
-  "ace-jump-mode"
-  "Ace jump back:-)"
-  t)
 
-(eval-after-load "ace-jump-mode"
-  '(ace-jump-mode-enable-mark-sync))
-
-(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
 ;; set zsh to default shell of vterm
 (use-package! vterm
   :config
@@ -120,9 +111,15 @@
 (global-set-key (kbd "<f9>") 'g-org-generate-docx-file)
 
 
-
+;; 文件目录补全
 (defun autocomplete-file-name ()
   (interactive)
   (comint-dynamic-complete-as-filename))
 
 (global-set-key (kbd "C-c f") 'autocomplete-file-name)
+
+
+;; go 文件运行指令
+(defun go-run-file ()
+  (interactive)
+  (shell-command (concat "go run " buffer-file-name)))
