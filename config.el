@@ -122,4 +122,4 @@
 ;; go 文件运行指令
 (defun go-run-file ()
   (interactive)
-  (shell-command (concat "go run " buffer-file-name)))
+  (async-shell-command (concat "go run " buffer-file-name)))
