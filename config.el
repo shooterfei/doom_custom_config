@@ -123,3 +123,25 @@
 (defun go-run-file ()
   (interactive)
   (async-shell-command (concat "go run " buffer-file-name)))
+
+(define-key evil-normal-state-map "Q" #'moon/query-relace-point)
+(define-key evil-visual-state-map "Q" #'moon/query-replace-region)
+
+;;;###autoload
+(defun moon/query-replace-region ()
+  "Query replace selected region."
+  (interactive)
+  (query-replace (buffer-substring-no-properties
+                  (region-beginning)
+                  (region-end))
+                 (completing-read "Replace to: " ())
+                 ))
+
+;;;###autoload
+(defun moon/query-relace-point ()
+  "Query replace thing at point."
+  (interactive)
+  (let ((word (thing-at-point 'word t)))
+    (query-replace word
+                   (completing-read (format "Replace \"%s\" to: " word) ())
+                   nil (beginning-of-line))))
